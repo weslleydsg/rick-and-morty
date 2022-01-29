@@ -1,0 +1,6 @@
+# JS files
+**/*.js
+
+# Folders
+node_modules
+build
