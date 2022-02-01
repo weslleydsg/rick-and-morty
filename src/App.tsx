@@ -8,7 +8,6 @@ const App = (): JSX.Element => {
   const isDarkMode = useIsDarkMode();
   StatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content');
   if (Platform.OS === 'android') {
-    console.log('Platform.Version :>> ', Platform.Version);
     Platform.Version >= 23 &&
       StatusBar.setBackgroundColor(isDarkMode ? 'gray' : 'white');
     if (UIManager.setLayoutAnimationEnabledExperimental) {
