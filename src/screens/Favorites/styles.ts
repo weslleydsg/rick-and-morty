@@ -6,4 +6,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  list: {
+    width: '100%',
+  },
 });

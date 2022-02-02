@@ -1,5 +1,11 @@
+export type FavoriteItem = {
+  id: number;
+  episode: string;
+  name: string;
+};
+
 export type FavoritesData = {
-  [id: number]: boolean;
+  [id: number]: FavoriteItem;
 };
 
 export type DeviceStorageKeys = 'favorites';

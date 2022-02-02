@@ -5,23 +5,23 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { FavoritesData } from '~/@types';
+import { FavoriteItem, FavoritesData } from '~/@types';
 import { DeviceStorage } from '~/utils';
 
 type Props = {
-  children: React.ReactNode;
+  children: JSX.Element;
 };
 
 export type EpisodesStateProviderContextType = {
   favorites: FavoritesData;
-  toggleFavorite(id: number): void;
+  toggleFavorite(data: FavoriteItem): void;
 };
 
 const CartProviderContext = createContext(
   {} as EpisodesStateProviderContextType,
 );
 
-const EpisodesStateProvider = ({ children }: Props): JSX.Element => {
+const EpisodesStateProvider = ({ children }: Props) => {
   const [favorites, setFavorites] = useState<FavoritesData>({});
 
   const storeFavoritesData = useCallback(
@@ -32,14 +32,14 @@ const EpisodesStateProvider = ({ children }: Props): JSX.Element => {
   );
 
   const toggleFavorite = useCallback(
-    async (id: number) => {
-      const isFavorite = favorites[id];
+    async (data: FavoriteItem) => {
+      const isFavorite = favorites[data.id];
       if (isFavorite) {
-        const { [id]: deleted, ...newFavoriteData } = favorites;
+        const { [data.id]: deleted, ...newFavoriteData } = favorites;
         setFavorites(newFavoriteData);
         storeFavoritesData(newFavoriteData);
       } else {
-        const newFavoriteData = { ...favorites, [id]: true };
+        const newFavoriteData = { ...favorites, [data.id]: data };
         setFavorites(newFavoriteData);
         storeFavoritesData(newFavoriteData);
       }

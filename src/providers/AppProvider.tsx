@@ -11,7 +11,7 @@ interface Props {
 
 const queryClient = new QueryClient();
 
-const AppProvider = ({ children }: Props): JSX.Element => {
+const AppProvider = ({ children }: Props) => {
   const isDarkMode = useIsDarkMode();
   return (
     <QueryClientProvider client={queryClient}>

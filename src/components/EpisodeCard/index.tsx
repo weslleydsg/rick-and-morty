@@ -15,7 +15,6 @@ export const ITEM_HEIGHT = 72;
 const EpisodeCard = ({ id, episode, name, onPress }: Props) => {
   const theme = useTheme();
   const { favorites, toggleFavorite } = useEpisodesState();
-  const isFavorite = favorites[id];
   return (
     <TouchableOpacity
       style={{ marginBottom: theme.spacings.medium }}
@@ -25,12 +24,13 @@ const EpisodeCard = ({ id, episode, name, onPress }: Props) => {
           title={episode}
           subtitle={name}
           left={(props) => (
-            <TouchableOpacity onPress={() => toggleFavorite(id)}>
+            <TouchableOpacity
+              onPress={() => toggleFavorite({ id, episode, name })}>
               <Avatar.Icon
                 {...props}
                 icon="heart"
                 style={{ backgroundColor: theme.colors.onSurface }}
-                color={isFavorite ? theme.colors.favorite : undefined}
+                color={favorites[id] ? theme.colors.favorite : undefined}
               />
             </TouchableOpacity>
           )}

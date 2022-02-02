@@ -4,7 +4,7 @@ import AppProvider from '~/providers/AppProvider';
 import Routes from '~/routes';
 import useIsDarkMode from './hooks/useIsDarkMode';
 
-const App = (): JSX.Element => {
+const App = () => {
   const isDarkMode = useIsDarkMode();
   StatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content');
   if (Platform.OS === 'android') {
