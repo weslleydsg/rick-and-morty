@@ -55,7 +55,11 @@ const TabRoutes = withTheme(({ theme }) => {
         <Tab.Screen
           name="FavoritesStack"
           component={FavoritesStack}
-          options={{ tabBarLabel: 'Favorites', tabBarBadge: favoritesCount }}
+          options={{
+            tabBarLabel: 'Favorites',
+            tabBarBadge: favoritesCount,
+            tabBarColor: 'yellow',
+          }}
         />
       </Tab.Navigator>
     </NavigationContainer>
