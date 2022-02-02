@@ -1,38 +1,23 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleProp,
-  Text,
-  useColorScheme,
-  View,
-  ViewStyle,
-} from 'react-native';
+import { Platform, StatusBar, UIManager } from 'react-native';
+import AppProvider from '~/providers/AppProvider';
+import Routes from '~/routes';
+import useIsDarkMode from './hooks/useIsDarkMode';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle: StyleProp<ViewStyle> = {
-    flexGrow: 1,
-    backgroundColor: isDarkMode ? 'black' : 'white',
-  };
-
+  const isDarkMode = useIsDarkMode();
+  StatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content');
+  if (Platform.OS === 'android') {
+    Platform.Version >= 23 &&
+      StatusBar.setBackgroundColor(isDarkMode ? 'gray' : 'white');
+    if (UIManager.setLayoutAnimationEnabledExperimental) {
+      UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+  }
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View style={backgroundStyle}>
-          <View>
-            <Text style={{ color: isDarkMode ? 'white' : 'black' }}>
-              Rick and Morty
-            </Text>
-          </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <AppProvider>
+      <Routes />
+    </AppProvider>
   );
 };
 

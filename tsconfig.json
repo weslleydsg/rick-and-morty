@@ -10,7 +10,6 @@
     "paths": {
       "~/*": ["src/*"]
     },
-    "typeRoots": ["./node_modules/@types", "./src/@types", "./src/styles"],
 
     /* Strict Type-Checking Options */
     "noImplicitAny": true,
