@@ -9,12 +9,15 @@ import React from 'react';
 import { withTheme } from 'react-native-paper';
 import Icons from 'react-native-vector-icons/Ionicons';
 import { BottomTabStacks } from '~/@types';
+import { useEpisodesState } from '~/hooks/useEpisodesState';
 import FavoritesStack from './favorites.routes';
 import HomeStack from './home.routes';
 
 const Tab = createMaterialBottomTabNavigator<BottomTabStacks>();
 
 const TabRoutes = withTheme(({ theme }) => {
+  const { favorites } = useEpisodesState();
+  const favoritesCount = Object.keys(favorites).length;
   const navigationTheme = theme.dark ? DarkTheme : DefaultTheme;
   const combinedTheme: Theme = {
     ...navigationTheme,
@@ -38,6 +41,8 @@ const TabRoutes = withTheme(({ theme }) => {
               case 'FavoritesStack':
                 iconName = focused ? 'heart' : 'heart-outline';
                 break;
+              default:
+                return;
             }
             return <Icons name={iconName} color={color} size={22} />;
           },
@@ -50,7 +55,7 @@ const TabRoutes = withTheme(({ theme }) => {
         <Tab.Screen
           name="FavoritesStack"
           component={FavoritesStack}
-          options={{ tabBarLabel: 'Favorites' }}
+          options={{ tabBarLabel: 'Favorites', tabBarBadge: favoritesCount }}
         />
       </Tab.Navigator>
     </NavigationContainer>
