@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
 import { Button, Title, withTheme } from 'react-native-paper';
-import { Episode } from '~/@types';
+import { Episode, HomeStack } from '~/@types';
 import EpisodeCard, { ITEM_HEIGHT } from '~/components/EpisodeCard';
 import Loading from '~/components/Loading';
 import { GetEpisodes } from '~/services/episode';
 import styles from './styles';
 
 const EpisodesScreen = withTheme(({ theme }) => {
+  const { navigate } = useNavigation<NavigationProp<HomeStack>>();
   const [page, setPage] = useState(1);
   const [items, setItems] = useState<Episode[]>([]);
   const { isLoading, isFetching, data, error, refetch } = GetEpisodes(page);
+
+  const onEpisodeCardPress = useCallback((id: number) => {
+    navigate('Episode', { id });
+  }, []);
 
   useEffect(() => {
     async function loadPage() {
@@ -48,7 +54,7 @@ const EpisodesScreen = withTheme(({ theme }) => {
         id={item.id}
         episode={item.episode}
         name={item.name}
-        onPress={() => undefined}
+        onPress={onEpisodeCardPress}
       />
     );
   };

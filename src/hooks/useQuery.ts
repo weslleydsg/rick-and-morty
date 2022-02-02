@@ -12,7 +12,7 @@ interface Props {
 export default function useQuery<T>(
   key: string,
   url: string,
-  { enabled = true, headers, params }: Props,
+  { enabled = true, headers, params }: Props = {},
 ): QueryResult<T> {
   return useReactQuery<unknown, Error, UseQueryResult<T, Error>>(
     key,

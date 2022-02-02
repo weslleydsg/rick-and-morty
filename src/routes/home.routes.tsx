@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { HomeStack } from '~/@types';
 import AppBar from '~/components/AppBar';
+import Episode from '~/screens/Episode';
 import Episodes from '~/screens/Episodes';
 
 const Stack = createNativeStackNavigator<HomeStack>();
@@ -15,6 +16,7 @@ const StackScreen = (): JSX.Element => {
         component={Episodes}
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="Episode" component={Episode} />
     </Stack.Navigator>
   );
 };

@@ -9,6 +9,7 @@ export declare global {
         tiny: number;
         medium: number;
         large: number;
+        huge: number;
       };
     }
   }

@@ -18,14 +18,7 @@ const FavoritesScreen = withTheme(({ theme }) => {
   });
 
   const renderItem = ({ item }: { item: FavoriteItem }) => {
-    return (
-      <EpisodeCard
-        id={item.id}
-        episode={item.episode}
-        name={item.name}
-        onPress={() => undefined}
-      />
-    );
+    return <EpisodeCard id={item.id} episode={item.episode} name={item.name} />;
   };
 
   return (

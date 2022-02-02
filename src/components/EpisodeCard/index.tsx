@@ -7,7 +7,7 @@ interface Props {
   id: number;
   episode: string;
   name: string;
-  onPress(id: number): void;
+  onPress?(id: number): void;
 }
 
 export const ITEM_HEIGHT = 72;
@@ -18,7 +18,8 @@ const EpisodeCard = ({ id, episode, name, onPress }: Props) => {
   return (
     <TouchableOpacity
       style={{ marginBottom: theme.spacings.medium }}
-      onPress={() => onPress(id)}>
+      disabled={!onPress}
+      onPress={() => onPress?.(id)}>
       <Surface>
         <Card.Title
           title={episode}
