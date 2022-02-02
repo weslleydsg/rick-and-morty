@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { EpisodesStateProvider } from '~/hooks/useEpisodesState';
 import useIsDarkMode from '~/hooks/useIsDarkMode';
 import { darkTheme, defaultTheme } from '~/styles';
 
@@ -15,7 +16,7 @@ const AppProvider = ({ children }: Props): JSX.Element => {
   return (
     <QueryClientProvider client={queryClient}>
       <PaperProvider theme={isDarkMode ? darkTheme : defaultTheme}>
-        {children}
+        <EpisodesStateProvider>{children}</EpisodesStateProvider>
       </PaperProvider>
     </QueryClientProvider>
   );

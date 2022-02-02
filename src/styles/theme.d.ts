@@ -1,7 +1,8 @@
 export declare global {
   namespace ReactNativePaper {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface ThemeColors {}
+    interface ThemeColors {
+      favorite: string;
+    }
 
     interface Theme {
       spacings: {
