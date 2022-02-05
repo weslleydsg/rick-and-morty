@@ -14,9 +14,12 @@ const EpisodesScreen = withTheme(({ theme }) => {
   const [items, setItems] = useState<Episode[]>([]);
   const { isLoading, isFetching, data, error, refetch } = GetEpisodes(page);
 
-  const onEpisodeCardPress = useCallback((id: number) => {
-    navigate('Episode', { id });
-  }, []);
+  const onEpisodeCardPress = useCallback(
+    (id: number) => {
+      navigate('Episode', { id });
+    },
+    [navigate],
+  );
 
   useEffect(() => {
     async function loadPage() {
@@ -30,7 +33,7 @@ const EpisodesScreen = withTheme(({ theme }) => {
     }
 
     loadPage();
-  }, [page]);
+  }, [page, refetch]);
 
   const keyExtractor = ({ id }: Episode) => `${id}`;
 

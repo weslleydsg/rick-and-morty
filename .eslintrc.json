@@ -18,13 +18,15 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["prettier", "react", "@typescript-eslint"],
+  "plugins": ["prettier", "react", "react-hooks", "@typescript-eslint"],
   "rules": {
     "prettier/prettier": "error",
     "indent": "off",
     "@typescript-eslint/indent": ["error", 2],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
