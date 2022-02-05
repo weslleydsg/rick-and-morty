@@ -54,7 +54,7 @@ const EpisodeScreen = withTheme(({ theme }) => {
     setOptions({
       headerTitle: episodeData?.episode,
     });
-  }, [episodeData?.episode]);
+  }, [episodeData?.episode, setOptions]);
 
   if (isLoading) return <Loading />;
   if (!data && error) {
