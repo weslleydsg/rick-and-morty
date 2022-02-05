@@ -24,12 +24,9 @@ const CartProviderContext = createContext(
 const EpisodesStateProvider = ({ children }: Props) => {
   const [favorites, setFavorites] = useState<FavoritesData>({});
 
-  const storeFavoritesData = useCallback(
-    async (data: FavoritesData) => {
-      await DeviceStorage.storeData('favorites', data);
-    },
-    [favorites],
-  );
+  const storeFavoritesData = useCallback(async (data: FavoritesData) => {
+    await DeviceStorage.storeData('favorites', data);
+  }, []);
 
   const toggleFavorite = useCallback(
     async (data: FavoriteItem) => {
@@ -44,7 +41,7 @@ const EpisodesStateProvider = ({ children }: Props) => {
         storeFavoritesData(newFavoriteData);
       }
     },
-    [favorites],
+    [favorites, storeFavoritesData],
   );
 
   useEffect(() => {
